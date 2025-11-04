@@ -1,0 +1,92 @@
+# Project Title
+
+🐾 Proyecto: Adoptme — Backend 3 · Primera Entrega
+💡 Descripción
+
+Proyecto base provisto por Coderhouse, adaptado para la Primera Entrega del Proyecto Final del curso Backend 3.
+El objetivo de esta entrega es implementar un router de mocks, módulos de generación de datos falsos y endpoints para generar e insertar datos de prueba en la base de datos MongoDB.
+
+## Tech Stack
+Node.js + Express
+MongoDB + Mongoose
+Faker.js
+Bcrypt
+Dotenv
+Nodemon
+
+#### Arquitectura en capas: Controllers → Services → Repository → DAO → DB
+
+### 📂 Estructura del proyecto (resumen)
+
+src/
+ ├── app.js
+ ├── server.js
+ ├── config/
+ ├── controllers/
+ ├── dao/
+ ├── dto/
+ ├── middlewares/
+ │    └── errorHandler.js
+ ├── mocks/
+ │    ├── users.mock.js
+ │    └── pets.mock.js
+ ├── repository/
+ ├── routes/
+ │    ├── mocks.router.js
+ │    ├── users.router.js
+ │    ├── pets.router.js
+ │    └── ...
+ ├── services/
+ └── utils/
+      ├── httpError.js
+      └── catchAsync.js
+
+### Environment Variables
+
+`PORT=8080`
+`MONGO_URI=mongodb://localhost:27017/adoptme`
+`NODE_ENV=development`
+
+### 🚀 Instalación y ejecución
+
+Instalar dependencias
+```bash
+npm install
+```
+
+Ejecutar el servidor en modo desarrollo
+
+```bash
+npm run dev
+```
+
+###  🧰 Rutas del módulo de mocks
+_Generar pets falsos (sin insertar)
+
+GET /api/mocks/mockingpets?count=5
+
+2️⃣ Generar usuarios falsos (sin insertar)
+
+GET /api/mocks/mockingusers?count=50
+
+3️⃣ Insertar usuarios y mascotas en la base de datos
+
+
+POST /api/mocks/generateData
+Body JSON:
+{
+  "users": 10,
+  "pets": 5
+}
+
+
+
+
+
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  npm run test
+```

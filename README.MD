@@ -1,6 +1,6 @@
-# Project Title
 
-🐾 Proyecto: Adoptme — Backend 3 · Primera Entrega
+
+# 🐾 Proyecto: Adoptme — Backend 3 · Primera Entrega
 💡 Descripción
 
 Proyecto base provisto por Coderhouse, adaptado para la Primera Entrega del Proyecto Final del curso Backend 3.

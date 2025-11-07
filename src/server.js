@@ -2,16 +2,17 @@
 import app from './app.js';
 import { connectDB } from './config/dbConfig.js';
 import { env } from './config/env.js';
+import logger from './config/logger.js';
 
 async function bootstrap() {
   await connectDB(env.MONGO_URI);
   const server = app.listen(env.PORT, () => {
-    console.log(`[server] listening on ${env.PORT}`);
+    logger.info(`[server] listening on ${env.PORT}`);
   });
 
   // apagado “limpio”
   const shutdown = () => {
-    console.log('[server] shutting down...');
+    logger.warn('[server] shutting down...');
     server.close(() => process.exit(0));
   };
   process.on('SIGINT', shutdown);
@@ -23,7 +24,7 @@ async function bootstrap() {
 // Arranca siempre, salvo en tests automatizados
 if (process.env.NODE_ENV !== 'test') {
   bootstrap().catch(err => {
-    console.error('[server] fatal error:', err);
+    logger.error('[server] fatal error:', err);
     process.exit(1);
   });
 }

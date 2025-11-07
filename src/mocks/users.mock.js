@@ -1,7 +1,7 @@
 // Genera usuarios mockeados con las reglas del enunciado
 import mongoose from 'mongoose';
 import { faker } from '@faker-js/faker';
-import { createHash } from '../utils/index.js'; // ya lo usás en sessions
+import { createHash } from '../utils/index.js'; 
 
 export async function makeMockUser() {
   return {

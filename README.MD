@@ -17,8 +17,7 @@ Nodemon
 #### Arquitectura en capas: Controllers → Services → Repository → DAO → DB
 
 ### 📂 Estructura del proyecto (resumen)
-
-src/
+```src/
  ├── app.js
  ├── server.js
  ├── config/
@@ -39,7 +38,7 @@ src/
  ├── services/
  └── utils/
       ├── httpError.js
-      └── catchAsync.js
+      └── catchAsync.js```
 
 ### Environment Variables
 

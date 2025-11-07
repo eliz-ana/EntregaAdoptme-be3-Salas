@@ -46,8 +46,8 @@ router.post('/generateData', catchAsync(async (req, res) => {
   const usersData = await makeManyMockUsers(usersQty);
   const petsData  = makeManyMockPets(petsQty);
 
-  // insertar (usando services -> DAO -> mongoose)
-  // Tip: podemos insertar de a uno (simple) o en paralelo
+  // insertar
+
   const userPromises = usersData.map(u => usersService.create({
     first_name: u.first_name,
     last_name:  u.last_name,

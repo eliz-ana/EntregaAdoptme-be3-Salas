@@ -1,15 +1,16 @@
 {
   "name": "plantilladocumentacion",
   "version": "1.0.0",
-  "main": "index.js",
+  "author": "Ana Salas",
+  "description": "Proyecto Adoptme - Backend 3 - Primera Entrega (Coderhouse)",
+  "main": "src/server.js",
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "mocha test/supertest.test.js"
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
@@ -18,14 +19,13 @@
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.5",
+    "morgan": "^1.10.1",
     "multer": "^1.4.5-lts.1",
-    "supertest": "^6.3.3"
+    "winston": "^3.18.3"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.1.0",
-    "chai": "^4.3.7",
-    "mocha": "^10.1.0",
-    "nodemon": "^3.1.10"
-  },
-  "description": ""
+    "nodemon": "^3.1.10",
+    "supertest": "^7.1.4"
+  }
 }

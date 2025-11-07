@@ -10,6 +10,8 @@ function required(name, fallback = undefined) {
 }
 
 export const env = {
-  PORT: Number(required('PORT', 8080)),
+  NODE_ENV: process.env.NODE_ENV ?? 'development',
+  PORT: Number(process.env.PORT ?? 8080),
   MONGO_URI: required('MONGO_URI', 'mongodb://localhost:27017/adoptme'),
+  JWT_SECRET: process.env.JWT_SECRET ?? 'change-me',
 };

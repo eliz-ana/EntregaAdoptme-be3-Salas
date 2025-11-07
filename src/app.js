@@ -2,6 +2,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import { notFound,errorHandler } from './middlewares/errorHandler.js';  
+import { httpLogger } from './middlewares/requestLogger.js';
 
 
 import usersRouter from './routes/users.router.js';
@@ -13,6 +14,7 @@ import mocksRouter from './routes/mocks.router.js';
 const app = express();
 
 app.use(express.json());
+app.use(httpLogger);
 app.use(cookieParser());
 
 app.use('/api/users', usersRouter);

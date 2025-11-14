@@ -31,8 +31,8 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const { email, password } = req.body;
 
+  const { email, password } = req.body;
   logger.info('users:login requested', { requestId: req.id, email });
 
   if (!email || !password) {
@@ -72,7 +72,8 @@ const current = async (req, res) => {
   logger.info('users:current ok', { requestId: req.id, email: user.email });
   res.json({ status: "success", payload: user });
 };
-
+// Nota: endpoints de ejemplo para mostrar un login "unprotected".
+// En producción se recomienda usar solo el login con DTO y payload mínimo.
 // Unprotected (similar, but uses full user in token)
 const unprotectedLogin = async (req, res) => {
   const { email, password } = req.body;
@@ -95,8 +96,10 @@ const unprotectedLogin = async (req, res) => {
     logger.warn('users:unprotectedLogin incorrect password', { requestId: req.id, email });
     throw err.badRequest('Incorrect password');
   }
-
-  const token = jwt.sign(user, process.env.JWT_SECRET || 'tokenSecretJWT', { expiresIn: "1h" });
+  
+  // convertir el doc de mongoose en objeto plano
+  const plainUser = user.toObject ? user.toObject() : { ...user };
+  const token = jwt.sign(plainUser, process.env.JWT_SECRET || 'tokenSecretJWT', { expiresIn: "1h" });
 
   logger.info('users:unprotectedLogin ok', { requestId: req.id, email });
   res.cookie('unprotectedCookie', token, { maxAge: 3600000 }).json({ status: "success", message: "Unprotected Logged in" });

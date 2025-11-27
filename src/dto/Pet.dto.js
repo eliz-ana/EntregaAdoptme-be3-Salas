@@ -1,6 +1,7 @@
 export default class PetDTO {
     static getPetInputFrom = (pet) =>{
         return {
+            petId: pet._id?.toString(),
             name:pet.name||'',
             specie:pet.specie||'',
             image: pet.image||'',

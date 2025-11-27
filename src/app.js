@@ -4,6 +4,10 @@ import cookieParser from 'cookie-parser';
 import { notFound,errorHandler } from './middlewares/errorHandler.js';
 import { requestId } from './middlewares/requestId.js';  
 import { httpLogger } from './middlewares/requestLogger.js';
+// Swagger imports
+import swaggerUI from 'swagger-ui-express';
+import swaggerJSDoc from 'swagger-jsdoc';
+import { info } from './docs/info.js';
 
 
 import usersRouter from './routes/users.router.js';
@@ -13,12 +17,16 @@ import sessionsRouter from './routes/sessions.router.js';
 import mocksRouter from './routes/mocks.router.js';
 
 const app = express();
+// Swagger setup
+const specs = swaggerJSDoc(info);
+
 
 app.use(express.json());
 app.use(requestId);
 app.use(httpLogger);
 app.use(cookieParser());
 
+app.use('/docs', swaggerUI.serve, swaggerUI.setup(specs));
 app.use('/api/users', usersRouter);
 app.use('/api/pets', petsRouter);
 app.use('/api/adoptions', adoptionsRouter);

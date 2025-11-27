@@ -7,11 +7,9 @@ import { err } from '../utils/httpError.js';
 
 const router = Router();
 
-/**
- * GET /api/mocks/mockingpets
- * (migrado aquí) -> devuelve pets mockeados (no inserta en DB)
- * ?count=numero  (default 50)
- */
+
+ // ?count=numero  (default 50)
+ 
 router.get('/mockingpets', (req, res) => {
   const count = Number(req.query.count ?? 50);
   const pets = makeManyMockPets(Number.isFinite(count) && count > 0 ? count : 50);

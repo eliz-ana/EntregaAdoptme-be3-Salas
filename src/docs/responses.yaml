@@ -1,0 +1,100 @@
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 665f0a123abc456def789012
+        first_name:
+          type: string
+          example: Ana
+        last_name:
+          type: string
+          example: Salas
+        email:
+          type: string
+          format: email
+          example: ana@example.com
+        role:
+          type: string
+          example: admin
+      required:
+        - _id
+        - first_name
+        - last_name
+        - email
+
+    UsersListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        payload:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+
+    UserResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        payload:
+          $ref: '#/components/schemas/User'
+
+    SimpleMessage:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Usuario eliminado correctamente
+
+
+    PetResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 6745f1a0c5b3c40012ab1234
+        name:
+          type: string
+          example: Firulais
+        species:
+          type: string
+          example: dog
+        birthDate:
+          type: string
+          example: 2020-01-01
+        adopted:
+          type: boolean
+          example: false
+
+    PetsListResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/PetResponse'
+    SuccessMessageResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Mascota actualizada correctamente
+
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        message:
+          type: string
+          example: Datos de la mascota no válidos

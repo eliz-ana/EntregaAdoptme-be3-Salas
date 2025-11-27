@@ -1,0 +1,194 @@
+paths:
+  /api/users:
+    get:
+      summary: Obtener todos los usuarios
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Lista de usuarios obtenida correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsersListResponse'
+
+  /api/users/{uid}:
+    get:
+      summary: Obtener un usuario por ID
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del usuario
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Usuario encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: ID de usuario o cuerpo de solicitud no válido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'     
+
+    put:
+      summary: Actualizar un usuario
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del usuario
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdateRequest'
+      responses:
+        '200':
+          description: Usuario actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+
+    delete:
+      summary: Eliminar un usuario
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: ID del usuario
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Usuario eliminado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SimpleMessage'
+
+
+  /api/pets:
+    get:
+      summary: Obtener todas las mascotas
+      tags:
+        - Pets
+      responses:
+        '200':
+          description: Lista de mascotas obtenida correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PetsListResponse'
+    post:
+      summary: Crear una nueva mascota
+      tags:
+        - Pets
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PetCreateRequest'
+      responses:
+        '201':
+          description: Mascota creada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PetResponse'
+        '400':
+          description: Cuerpo de solicitud no válido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/pets/{pid}:
+    
+    put:
+      summary: Actualizar una mascota
+      tags:
+        - Pets
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ID de la mascota
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PetResponse'
+      responses:
+        '200':
+          description: Mascota actualizada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PetResponse'
+        '400':
+          description: ID de mascota o cuerpo de solicitud no válido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Mascota no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'      
+    delete:
+      summary: Eliminar una mascota
+      tags:
+        - Pets
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: ID de la mascota
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Mascota eliminada correctamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMessageResponse'
+        '400':
+          description: ID de mascota o cuerpo de solicitud no válido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Mascota no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'                        

@@ -1,0 +1,37 @@
+components:
+  schemas:
+    UserUpdateRequest:
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: Ana
+        last_name:
+          type: string
+          example: Salas
+        email:
+          type: string
+          format: email
+          example: ana@example.com
+        age:
+          type: integer
+          example: 30
+      additionalProperties: false
+
+
+ 
+    PetCreateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Firulais
+        species:
+          type: string
+          example: dog
+        age:
+          type: integer
+          example: 3
+      required: [name, species]
+      additionalProperties: false
+      

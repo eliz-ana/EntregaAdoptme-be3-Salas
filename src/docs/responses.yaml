@@ -1,9 +1,10 @@
 components:
   schemas:
+  #------------------- Users --------------
     User:
       type: object
       properties:
-        _id:
+        userId:
           type: string
           example: 665f0a123abc456def789012
         first_name:
@@ -53,21 +54,24 @@ components:
           example: success
         message:
           type: string
-          example: Usuario eliminado correctamente
+          example: Recurso eliminado correctamente
 
-
+  #------------------- Pets --------------
     PetResponse:
       type: object
       properties:
-        id:
+        petId:
           type: string
           example: 6745f1a0c5b3c40012ab1234
         name:
           type: string
           example: Firulais
-        species:
+        specie:
           type: string
           example: dog
+        image:
+          type: string
+          example: https://example.com/firulais.png  
         birthDate:
           type: string
           example: 2020-01-01
@@ -88,7 +92,7 @@ components:
         message:
           type: string
           example: Mascota actualizada correctamente
-
+  #------------------- Sessions --------------
     ErrorResponse:
       type: object
       properties:
@@ -97,4 +101,107 @@ components:
           example: error
         message:
           type: string
-          example: Datos de la mascota no válidos
+          example: Datos del recurso no válidos
+
+    RegisterResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        payload:
+          type: string
+          description: ID del usuario creado
+          example: 665f0a123abc456def789012
+      required:
+        - status
+        - payload
+
+    LoginResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        message:
+          type: string
+          example: Logged in
+      required:
+        - status
+        - message
+
+    CurrentUserResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        payload:
+          type: object
+          description: Datos del usuario extraídos del token JWT
+          properties:
+            first_name:
+              type: string
+              example: Ana
+            last_name:
+              type: string
+              example: Salas
+            email:
+              type: string
+              format: email
+              example: ana@example.com
+            role:
+              type: string
+              example: user
+      required:
+        - status
+        - payload
+
+ #------------------- Adoption --------------     
+    Adoption:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 6750a1b2c3d4e5f678901234
+        owner:
+          type: string
+          description: ID del usuario que adopta
+          example: 665f0a123abc456def789012
+        pet:
+          type: string
+          description: ID de la mascota adoptada
+          example: 6745f1a0c5b3c40012ab1234
+      required:
+        - _id
+        - owner
+        - pet
+
+    AdoptionsListResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        payload:
+          type: array
+          items:
+            $ref: '#/components/schemas/Adoption'
+
+    AdoptionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: success
+        payload:
+          $ref: '#/components/schemas/Adoption'
+
+
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: coderCookie     
+
+

@@ -4,6 +4,9 @@ import cookieParser from 'cookie-parser';
 import { notFound,errorHandler } from './middlewares/errorHandler.js';
 import { requestId } from './middlewares/requestId.js';  
 import { httpLogger } from './middlewares/requestLogger.js';
+import path from 'path';
+import __dirname from './utils/index.js';
+
 // Swagger imports
 import swaggerUI from 'swagger-ui-express';
 import swaggerJSDoc from 'swagger-jsdoc';
@@ -20,6 +23,7 @@ const app = express();
 // Swagger setup
 const specs = swaggerJSDoc(info);
 
+app.use('/img', express.static(path.join(__dirname, 'public','img')));
 
 app.use(express.json());
 app.use(requestId);

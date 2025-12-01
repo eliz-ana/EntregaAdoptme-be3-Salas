@@ -22,7 +22,7 @@ const getAdoption = async (req, res) => {
 const createAdoption = async (req, res) => {
   const { uid, pid } = req.params;
   logger.info('adoptions:create requested', { requestId: req.id, uid, pid });
-  const user = await usersService.getUserById(uid);
+  const user = await usersService.getUserByIdRaw(uid);
   if (!user) {
     logger.warn('adoptions:create user not found', { requestId: req.id, uid });
     throw err.notFound('User not found');
@@ -43,7 +43,8 @@ const createAdoption = async (req, res) => {
   await petsService.update(pet._id, { adopted: true, owner: user._id });
   await adoptionsService.create({ owner: user._id, pet: pet._id });
   logger.info('adoptions:create ok', { requestId: req.id, uid, pid });
-  res.json({ status: "success", message: "Pet adopted" });
+  res.status(201).json({ status: "success", message: "Pet adopted" });
+
 };
 
 export default {

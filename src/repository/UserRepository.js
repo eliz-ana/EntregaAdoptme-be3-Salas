@@ -19,6 +19,16 @@ export default class UserRepository extends GenericRepository{
         const user = await this.getBy({email});
         return user ? UserDTO.getUserTokenFrom(user) : null;
     }
+    getUserByEmailRaw = async (email) => {
+
+        const user = await this.getBy({ email });
+        return user;                 //no pasa por el dto , con password
+  }
+    getUserByIdRaw = async (id) => {
+        if (!mongoose.isValidObjectId(id)) throw err.badRequest('Invalid id');
+        const user = await this.getBy({ _id: id });
+        return user;                 //no pasa por el dto, puedo acceder al array de mascotas
+    }
     getUserById = async (id) => {
     if (!mongoose.isValidObjectId(id)) throw err.badRequest('Invalid id');
     const user = await this.getBy({ _id: id });

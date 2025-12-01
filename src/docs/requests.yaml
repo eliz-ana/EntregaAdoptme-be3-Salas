@@ -1,5 +1,6 @@
 components:
   schemas:
+  #------------------- Users --------------
     UserUpdateRequest:
       type: object
       properties:
@@ -18,20 +19,67 @@ components:
           example: 30
       additionalProperties: false
 
-
- 
+  #------------------- Pets --------------
     PetCreateRequest:
       type: object
       properties:
         name:
           type: string
           example: Firulais
-        species:
+        specie:
           type: string
           example: dog
-        age:
-          type: integer
-          example: 3
-      required: [name, species]
+        image:
+          type: string
+          example: https://example.com/firulais.png  
+        birthDate:
+          type: string
+          example: 2020-01-01
+        adopted:
+          type: boolean
+          example: false  
+      required: [name, specie]
       additionalProperties: false
-      
+
+  #------------------- Sessions --------------      
+
+    RegisterRequest:
+      type: object
+      properties:
+        first_name:
+          type: string
+          example: Ana
+        last_name:
+          type: string
+          example: Salas
+        email:
+          type: string
+          format: email
+          example: ana@example.com
+        password:
+          type: string
+          format: password
+          example: mySecret123
+      required:
+        - first_name
+        - last_name
+        - email
+        - password
+      additionalProperties: false
+
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          example: ana@example.com
+        password:
+          type: string
+          format: password
+          example: mySecret123
+      required:
+        - email
+        - password
+      additionalProperties: false
+  #------------------- Adoption --------------    

@@ -40,7 +40,7 @@ const login = async (req, res) => {
     throw err.badRequest('Incomplete values');
   }
 
-  const user = await usersService.getUserByEmail(email);
+  const user = await usersService.getUserByEmailRaw(email);
   if (!user) {
     logger.warn('users:login not found', { requestId: req.id, email });
     throw err.notFound("User doesn't exist");

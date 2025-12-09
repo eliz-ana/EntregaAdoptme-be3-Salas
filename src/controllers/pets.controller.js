@@ -3,6 +3,7 @@ import { petsService } from "../services/index.js"
 import __dirname from "../utils/index.js";
 import {err} from "../utils/httpError.js";
 import logger from "../config/logger.js";
+import mongoose from "mongoose";
 
 
 
@@ -10,6 +11,19 @@ const getAllPets = async(req,res)=>{
     logger.info('pets:list', { requestId: req.id });
     const pets = await petsService.getAll();
     res.send({status:"success",payload:pets})
+}
+
+const getPetById = async(req,res)=>{
+    const petId =  req.params.pid
+    logger.info('pets:get', { requestId: req.id, petId });
+
+    if (!mongoose.isValidObjectId(petId)) {
+    throw err.badRequest('Invalid pet id');
+   }
+    const pet = await petsService.getById(petId);
+    if(!pet) throw err.notFound('Pet not found');
+
+    res.send({status:"success",payload:pet})
 }
 
 const createPet = async(req,res)=> {
@@ -60,6 +74,7 @@ const createPetWithImage = async(req,res) =>{
 }
 export default {
     getAllPets,
+    getPetById,
     createPet,
     updatePet,
     deletePet,

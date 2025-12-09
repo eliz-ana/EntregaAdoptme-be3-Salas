@@ -8,7 +8,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "echo \"No tests yet\" && exit 0"
+    "test": "mocha ./test/**/*.test.js --exit",
+    "test:adoption": "mocha ./test/adoption.test.js --exit"
   },
   "keywords": [],
   "license": "ISC",
@@ -27,6 +28,8 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^10.1.0",
+    "chai": "^6.2.1",
+    "mocha": "^11.7.5",
     "nodemon": "^3.1.10",
     "supertest": "^7.1.4"
   }

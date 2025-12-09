@@ -13,6 +13,8 @@ Faker.js
 Bcrypt
 Dotenv
 Nodemon
+Swagger (openAPI)
+Docker (Dockerfile + Docker Hub image)
 
 #### Arquitectura en capas: Controllers → Services → Repository → DAO → DB
 
@@ -79,7 +81,43 @@ Body JSON:
 }
 
 
+###  Documentacion Swagger (OpenAPI)
 
+Con el servidor corriendo:
+
+http://localhost:8080/api/docs
+
+
+Desde Swagger podés:
+
+Probar los endpoints
+
+Ver modelos de request/response
+
+Enviar datos al servidor desde la interfaz
+
+
+##  Docker Support
+Este proyecto incluye Dockerfile + imagen publicada en Docker Hub.
+
+## Imagen Docker en Docker Hub
+
+La imagen del proyecto está publicada en:
+
+👉 https://hub.docker.com/r/ana840512/adoptme-app-coderhouse
+
+## Descargar la imagen
+docker pull ana840512/adoptme-app-coderhouse:latest
+
+## Ejecutar el contenedor
+
+Requiere un archivo .env.docker (incluido en el repo):
+
+docker run -d ^
+  --name adoptme-container ^
+  --env-file .env.docker ^
+  -p 8080:8080 ^
+  ana840512/adoptme-app-coderhouse:latest
 
 
 ## Running Tests

@@ -393,18 +393,14 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /api/adoptions/{uid}/{pid}:
+  /api/adoptions/{pid}:
     post:
-      summary: Crear una adopción entre un usuario y una mascota
+      summary: Crear una adopción (usuario autenticado adopta una mascota)
       tags:
         - Adoptions
+      security:
+        - cookieAuth: []
       parameters:
-        - name: uid
-          in: path
-          required: true
-          description: ID del usuario adoptante
-          schema:
-            type: string
         - name: pid
           in: path
           required: true
@@ -424,9 +420,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Login requerido (no hay cookie o token inválido)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Token inválido/expirado o rol no permitido (admin)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        
         '404':
           description: Usuario o mascota no encontrados
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+    

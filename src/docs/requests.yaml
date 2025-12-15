@@ -82,4 +82,4 @@ components:
         - email
         - password
       additionalProperties: false
-  #------------------- Adoption --------------    
+  

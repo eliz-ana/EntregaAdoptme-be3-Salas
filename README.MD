@@ -1,9 +1,9 @@
 
 
-# 🐾 Proyecto: Adoptme — Backend 3 · Primera Entrega
+# 🐾 Proyecto: Adoptme — Backend 3 · CoderHouse
 💡 Descripción
 
-Proyecto base provisto por Coderhouse, adaptado para la Primera Entrega del Proyecto Final del curso Backend 3.
+Proyecto base provisto por Coderhouse para curso Backend 3.
 El objetivo de esta entrega es implementar un router de mocks, módulos de generación de datos falsos y endpoints para generar e insertar datos de prueba en la base de datos MongoDB.
 
 ## Tech Stack
@@ -14,6 +14,7 @@ Bcrypt
 Dotenv
 Nodemon
 Swagger (openAPI)
+Mocha+Chai+Supertest
 Docker (Dockerfile + Docker Hub image)
 
 #### Arquitectura en capas: Controllers → Services → Repository → DAO → DB

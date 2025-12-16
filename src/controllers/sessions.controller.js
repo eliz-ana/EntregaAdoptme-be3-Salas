@@ -67,10 +67,15 @@ const current = async (req, res) => {
     logger.warn('users:current unauthorized (no cookie)', { requestId: req.id });
     throw err.unauthorized('No cookie found');
   }
-  const user = jwt.verify(cookie, process.env.JWT_SECRET || 'tokenSecretJWT');
+   try {
+    const user = jwt.verify(cookie, process.env.JWT_SECRET || 'tokenSecretJWT');
 
-  logger.info('users:current ok', { requestId: req.id, email: user.email });
-  res.json({ status: "success", payload: user });
+    logger.info('users:current ok', { requestId: req.id, email: user.email });
+    res.json({ status: "success", payload: user });
+  } catch (error) {
+    logger.warn('users:current forbidden (invalid token)', { requestId: req.id });
+    throw err.forbidden('Invalid or expired token');
+  }
 };
 // Nota: endpoints de ejemplo para mostrar un login "unprotected".
 // En producción se recomienda usar solo el login con DTO y payload mínimo.

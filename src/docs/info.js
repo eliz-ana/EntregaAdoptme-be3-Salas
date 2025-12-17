@@ -1,3 +1,6 @@
+//config extra para railways
+const baseUrl =
+  process.env.BASE_URL || `http://localhost:${process.env.PORT || 8080}`;
 
 
 export const info ={
@@ -10,7 +13,7 @@ export const info ={
             description: 'API REST'},
         servers: [
             {
-                url: 'http://localhost:8080',
+                url: baseUrl
             }
         ],
         
